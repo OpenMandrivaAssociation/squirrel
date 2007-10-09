@@ -1,6 +1,6 @@
 %define  name squirrel 
-%define  version 2_0_5
-%define  release %mkrel 4
+%define  version 2.1.2
+%define  release %mkrel 1
 %define  summary The squirrel language
 %define  aname SQUIRREL2
 %define packagedir SQUIRREL2
