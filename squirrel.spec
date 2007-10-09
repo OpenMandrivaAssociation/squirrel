@@ -1,26 +1,20 @@
-%define  name squirrel 
-%define  version 2.1.2
-%define  release %mkrel 1
-%define  summary The squirrel language
 %define  aname SQUIRREL2
 %define packagedir SQUIRREL2
 
 %define major 0
-%define libname %mklibname %name %major
+%define libname %mklibname %{name} %{major}
 
-
-Name:    %name
-Version: %version
-Release: %release
-Summary: %summary
-License: GPL
-URL:    http://sourceforge.net/projects/squirrel/
-Group:   Development/Other
-Source:  http://ovh.dl.sourceforge.net/sourceforge/squirrel/%{name}_%{version}_stable.tar.bz2
-Patch0:  %name.h.patch
-BuildRoot: %{_tmppath}/%{name}-buildroot
-
-Conflicts: ispell
+Summary:	The squirrel language
+Name:		squirrel
+Version:	2.1.2
+Release:	%mkrel 1
+License:	GPL
+Group:		Development/Other
+URL:		http://squirrel-lang.org
+Source:		http://ovh.dl.sourceforge.net/sourceforge/squirrel/%{name}_%{version}_stable.tar.bz2
+Patch0:		%name.h.patch
+Conflicts:	ispell
+BuildRoot:	%{_tmppath}/%{name}-buildroot
 
 %description
 Squirrel is a light weight programming language 
@@ -29,14 +23,12 @@ delegation,tail recursion,generators,cooperative
 threads,exception handling, reference counting and 
 garbage collection on demand. C-like syntax.
 
-
-%package -n     %{libname}-devel
-Summary:        Header files and static libraries from %name
-Group:          Development/Other
-Provides:       lib%{name}-devel = %{version}-%{release}
-Provides:       %{name}-devel = %{version}-%{release}
-Obsoletes:      %name-devel
-
+%package -n %{libname}-devel
+Summary:	Header files and static libraries from %name
+Group:		Development/Other
+Provides:	lib%{name}-devel = %{version}-%{release}
+Provides:	%{name}-devel = %{version}-%{release}
+Obsoletes:	%name-devel
 
 %description -n %{libname}-devel
 Libraries and includes files for
@@ -89,5 +81,3 @@ rm -rf %buildroot
 %defattr(-,root,root)
 %_includedir/sq*.h
 %_libdir/%name/*
-
-
