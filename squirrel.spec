@@ -1,8 +1,9 @@
-%define  aname SQUIRREL2
+%define aname SQUIRREL2
 %define packagedir SQUIRREL2
 
 %define major 0
 %define libname %mklibname %{name} %{major}
+%define develname %mklibname %{name} -d
 
 Summary:	The squirrel language
 Name:		squirrel
@@ -12,9 +13,9 @@ License:	GPL
 Group:		Development/Other
 URL:		http://squirrel-lang.org
 Source:		http://ovh.dl.sourceforge.net/sourceforge/squirrel/%{name}_%{version}_stable.tar.bz2
-Patch0:		%name.h.patch
+Patch0:		%{name}.h.patch
 Conflicts:	ispell
-BuildRoot:	%{_tmppath}/%{name}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 Squirrel is a light weight programming language 
@@ -23,25 +24,22 @@ delegation,tail recursion,generators,cooperative
 threads,exception handling, reference counting and 
 garbage collection on demand. C-like syntax.
 
-%package -n %{libname}-devel
+%package -n %{develname}
 Summary:	Header files and static libraries from %name
 Group:		Development/Other
 Provides:	lib%{name}-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
-Obsoletes:	%name-devel
+Obsoletes:	%mklibname %{name} -d
 
-%description -n %{libname}-devel
+%description -n %{develname}
 Libraries and includes files for
 developing programs based on %name.
 
 %prep
-rm -rf %buildroot
-
-%setup -q -n %aname
+%setup -q -n %{aname}
 %ifarch amd64
 %patch0 -p0
 %endif
-
 
 %build
 
@@ -51,33 +49,30 @@ perl -pi -e 's/\015$//' COPYRIGHT
 perl -pi -e 's/\015$//' doc/*
 
 %install
-install -d -m755 %buildroot/%_bindir
-install -d -m755 %buildroot/%_libdir/%name
-install -d -m755 %buildroot/%_docdir
-install -d -m755 %buildroot/%_includedir/%name
+install -d -m755 %{buildroot}/%{_bindir}
+install -d -m755 %{buildroot}/%{_libdir}/%{name}
+install -d -m755 %{buildroot}/%{_docdir}/%{name}
+install -d -m755 %{buildroot}/%{_includedir}/%{name}
 
+%make
 
-make
-
-install -m755 ../%{packagedir}/bin/sq %buildroot/%_bindir
-install -m755 ../%{packagedir}/lib/*.a %buildroot/%_libdir/%name
-install -m755 ../%{packagedir}/doc/*  %buildroot/%_docdir
-install -m755 ../%{packagedir}/include/* %buildroot/%_includedir
+install  ../%{packagedir}/bin/sq %{buildroot}/%{_bindir}
+install  ../%{packagedir}/lib/*.a %{buildroot}/%{_libdir}/%{name}
+install  ../%{packagedir}/doc/*  %{buildroot}/%{_docdir}/%{name}
+install  ../%{packagedir}/include/* %{buildroot}/%{_includedir}
 
 #correct wrong file end of line encoding 
-perl -pi -e 's/\015$//' %buildroot/%_includedir/* 
-
+perl -pi -e 's/\015$//' %{buildroot}/%{_includedir}/*
 
 %clean
-rm -rf %buildroot
+rm -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
-%doc README COPYRIGHT HISTORY
-%_bindir/sq
-%_docdir/sq*.*
+%defattr(644,root,root,755)
+%doc %{_docdir}/%{name}
+%attr(755,root,root) %{_bindir}/sq
 
-%files -n %{libname}-devel
-%defattr(-,root,root)
-%_includedir/sq*.h
-%_libdir/%name/*
+%files -n %{develname}
+%defattr(644,root,root,755)
+%{_includedir}/sq*.h
+%{_libdir}/%{name}/*
