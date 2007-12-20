@@ -1,4 +1,4 @@
-%define aname SQUIRREL2
+%define oname SQUIRREL2
 %define packagedir SQUIRREL2
 
 %define major 0
@@ -9,11 +9,10 @@ Summary:	The squirrel language
 Name:		squirrel
 Version:	2.1.2
 Release:	%mkrel 1
-License:	GPL
+License:	GPLv2+
 Group:		Development/Other
 URL:		http://squirrel-lang.org
 Source:		http://ovh.dl.sourceforge.net/sourceforge/squirrel/%{name}_%{version}_stable.tar.bz2
-Patch0:		%{name}.h.patch
 Conflicts:	ispell
 
 %description
@@ -35,10 +34,7 @@ Libraries and includes files for
 developing programs based on %name.
 
 %prep
-%setup -q -n %{aname}
-%ifarch amd64
-%patch0 -p0
-%endif
+%setup -qn %{oname}
 
 %build
 
@@ -53,7 +49,11 @@ install -d -m755 %{buildroot}/%{_libdir}/%{name}
 install -d -m755 %{buildroot}/%{_docdir}/%{name}
 install -d -m755 %{buildroot}/%{_includedir}/%{name}
 
+%ifnarch ix86
+%make sq64
+%else
 %make
+%endif
 
 install  ../%{packagedir}/bin/sq %{buildroot}/%{_bindir}
 install  ../%{packagedir}/lib/*.a %{buildroot}/%{_libdir}/%{name}
