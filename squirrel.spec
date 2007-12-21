@@ -8,7 +8,7 @@
 Summary:	The squirrel language
 Name:		squirrel
 Version:	2.1.2
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv2+
 Group:		Development/Other
 URL:		http://squirrel-lang.org
@@ -23,11 +23,11 @@ threads,exception handling, reference counting and
 garbage collection on demand. C-like syntax.
 
 %package -n %{develname}
-Summary:	Header files and static libraries from %name
+Summary:	Header files and static libraries from %{name}
 Group:		Development/Other
 Provides:	lib%{name}-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
-Obsoletes:	%mklibname %{name} -d
+Obsoletes:	%mklibname %{name} 0 -d
 
 %description -n %{develname}
 Libraries and includes files for
