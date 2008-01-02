@@ -14,6 +14,7 @@ Group:		Development/Other
 URL:		http://squirrel-lang.org
 Source:		http://ovh.dl.sourceforge.net/sourceforge/squirrel/%{name}_%{version}_stable.tar.bz2
 Conflicts:	ispell
+BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 Squirrel is a light weight programming language 
