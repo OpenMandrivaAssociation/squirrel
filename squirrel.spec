@@ -7,7 +7,7 @@
 Summary:	The squirrel language
 Name:		squirrel
 Version:	2.2.4
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	GPLv2+
 Group:		Development/Other
 URL:		http://squirrel-lang.org
