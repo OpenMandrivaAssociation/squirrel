@@ -17,6 +17,7 @@ URL:		http://squirrel-lang.org
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/squirrel/%{name}_%{version}_stable.tar.gz
 Patch0:         %{name}-2.2.5-fdr-autotools.patch
 Patch1:         %{name}-2.2.4-fdr-mem.patch
+Patch2:		squirrel-automake-1.13.patch
 
 %description
 Squirrel is a light weight programming language 
@@ -40,8 +41,7 @@ developing programs based on %name.
 
 %prep
 %setup -qn %{oname}
-%patch0 -p1 -b .autotools
-%patch1 -p1 -b .mem
+%apply_patches
 
 # fix file permissions
 find . -type f -exec chmod a-x {} \;
