@@ -9,12 +9,13 @@
 
 Name:		squirrel
 Version:	2.2.5
-Release:	%mkrel 1
+Release:	2
 Summary:	The squirrel language
 License:	zlib
 Group:		Development/Other
 URL:		http://squirrel-lang.org
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/squirrel/%{name}_%{version}_stable.tar.gz
+Source100:	squirrel.rpmlintrc
 Patch0:         %{name}-2.2.5-fdr-autotools.patch
 Patch1:         %{name}-2.2.4-fdr-mem.patch
 Patch2:		squirrel-automake-1.13.patch
