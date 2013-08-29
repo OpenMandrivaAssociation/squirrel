@@ -9,7 +9,7 @@
 
 Name:		squirrel
 Version:	2.2.5
-Release:	2
+Release:	3
 Summary:	The squirrel language
 License:	zlib
 Group:		Development/Other
@@ -78,20 +78,4 @@ perl -pi -e 's/\015$//' %{buildroot}/%{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
 
-
-%changelog
-
-* Mon Feb 27 2012 kamil <kamil> 2.2.5-1.mga2
-+ Revision: 215542
-- new version 2.2.5
-- sync .spec with Fedora
-  o add patches:
-  * P0 autotools.patch
-  * P1 mem.patch
-  o disable static library
-- update license (it's zlib not GPL)
-
-* Fri Apr 01 2011 dams <dams> 2.2.4-1.mga1
-+ Revision: 79375
-- imported package squirrel
 
