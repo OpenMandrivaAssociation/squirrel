@@ -3,13 +3,12 @@
 %define oname SQUIRREL2
 %define packagedir SQUIRREL2
 
-%define major 0
-%define libname %mklibname %{name} %{major}
+%define libname %mklibname %{name} %{version}
 %define develname %mklibname %{name} -d
 
 Name:		squirrel
 Version:	2.2.5
-Release:	7
+Release:	8
 Summary:	The squirrel language
 License:	zlib
 Group:		Development/Other
@@ -27,10 +26,18 @@ delegation,tail recursion,generators,cooperative
 threads,exception handling, reference counting and 
 garbage collection on demand. C-like syntax.
 
+%package -n %{libname}
+Summary:	Libraries for %{name}
+Group:		Development/Other
+Conflicts:	%{_lib}squirrel-devel < 2.2.5-2
+
+%description -n %{libname}
+Shared library files for %name.
 
 %package -n %{develname}
 Summary:	Header files and static libraries from %{name}
 Group:		Development/Other
+Requires:	%{libname} = %{version}-%{release}
 Provides:	lib%{name}-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 Obsoletes:	%mklibname %{name} 0 -d
@@ -56,11 +63,12 @@ do
     perl -pi -e 's/\015$//' $f
 done
 
+%build
 sh autogen.sh
 
-%build
 %configure2_5x --disable-static
 %make
+
 %install
 %makeinstall_std INSTALL="/usr/bin/install -p"
 
@@ -73,9 +81,12 @@ perl -pi -e 's/\015$//' %{buildroot}/%{_includedir}/*
 %doc README HISTORY COPYRIGHT COMPILE
 %{_bindir}/sq
 
+%files -n %{libname}
+%{_libdir}/libsqstdlib-%{version}.so
+%{_libdir}/libsquirrel-%{version}.so
+
 %files -n %{develname}
 %{_includedir}/%{name}
-%{_libdir}/*.so
+%{_libdir}/libsqstdlib.so
+%{_libdir}/libsquirrel.so
 %{_libdir}/pkgconfig/*
-
-
