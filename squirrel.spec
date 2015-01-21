@@ -9,8 +9,8 @@
 %define ver %(echo %{version} |sed -e 's,\\.,_,g')
 
 Name:		squirrel
-Version:	3.0.6
-Release:	2
+Version:	3.0.7
+Release:	1
 Summary:	The squirrel language
 License:	zlib
 Group:		Development/Other
