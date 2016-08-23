@@ -1,7 +1,6 @@
 %define _disable_ld_no_undefined %{nil}
 
-%define oname SQUIRREL%(echo %{version} | cut -d. -f1)
-%define packagedir %{oname}
+%define oname %{name}%(echo %{version} | cut -d. -f1)
 
 %define libname %mklibname %{name} %{version}
 %define develname %mklibname %{name} -d
