@@ -9,8 +9,8 @@
 %define ver %(echo %{version} |sed -e 's,\\.,_,g')
 
 Name:		squirrel
-Version:	3.0.7
-Release:	4
+Version:	3.1
+Release:	1
 Summary:	The squirrel language
 License:	zlib
 Group:		Development/Other
@@ -63,6 +63,8 @@ automake -a
 autoconf
 
 %build
+%global optflags %optflags -fPIC
+
 %configure \
 	--includedir=%{_includedir}/%{name}
 %make
