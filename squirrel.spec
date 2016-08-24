@@ -9,7 +9,7 @@
 
 Name:		squirrel
 Version:	3.1
-Release:	1
+Release:	2
 Summary:	The squirrel language
 License:	zlib
 Group:		Development/Other
@@ -31,11 +31,11 @@ garbage collection on demand. C-like syntax.
 %package -n %{develname}
 Summary:	Header files and static libraries from %{name}
 Group:		Development/Other
-Requires:	%{mklibname squirrel 0} = %{version}-%{release}
-Requires:	%{mklibname sqstdlib 0} = %{version}-%{release}
-Provides:	lib%{name}-devel = %{version}-%{release}
-Provides:	%{name}-devel = %{version}-%{release}
-Obsoletes:	%mklibname %{name} 0 -d
+Requires:	%{mklibname squirrel 0} = %{EVRD}
+Requires:	%{mklibname sqstdlib 0} = %{EVRD}
+Provides:	lib%{name}-devel = %{EVRD}
+Provides:	%{name}-devel = %{EVRD}
+Obsoletes:	%{mklibname %{name} 0 -d} < 3.1
 
 %description -n %{develname}
 Libraries and includes files for
@@ -87,7 +87,7 @@ Description: squirrel library
 Version: %{version}
 
 Requires:
-Libs: -lsquirrel -lsqstdlib
+Libs: -L\${libdir} -lsquirrel -lsqstdlib
 Cflags: -I\${includedir}
 EOF
 
