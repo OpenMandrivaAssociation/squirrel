@@ -22,10 +22,10 @@ Patch0:         squirrel-autoconfiscate.patch
 %libpackage sqstdlib 0
 
 %description
-Squirrel is a light weight programming language 
+Squirrel is a light weight programming language
 featuring higher-order functions,classes/inheritance,
-delegation,tail recursion,generators,cooperative 
-threads,exception handling, reference counting and 
+delegation,tail recursion,generators,cooperative
+threads,exception handling, reference counting and
 garbage collection on demand. C-like syntax.
 
 %package -n %{develname}
@@ -71,7 +71,7 @@ autoconf
 %install
 %makeinstall_std INSTALL="/usr/bin/install -p"
 
-# correct wrong file end of line encoding 
+# correct wrong file end of line encoding
 perl -pi -e 's/\015$//' %{buildroot}/%{_includedir}/*
 
 # Add pkgconfig file
@@ -94,6 +94,9 @@ EOF
 # Fix SUSE-ism
 mv %{buildroot}%{_docdir}/packages/%{name} %{buildroot}%{_docdir}/%{name}
 rmdir %{buildroot}%{_docdir}/packages
+
+# remove pdf
+rm -fv %{buildroot}/%{_docdir}/%{name}/*.pdf
 
 %files
 %doc README HISTORY COPYRIGHT COMPILE
