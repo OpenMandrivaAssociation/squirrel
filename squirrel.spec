@@ -44,7 +44,7 @@ developing programs based on %name.
 
 %prep
 %setup -qn %{oname}
-%apply_patches
+%autopatch -p1
 
 # fix file permissions
 find . -type f -exec chmod a-x {} \;
