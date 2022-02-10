@@ -8,13 +8,13 @@
 %define ver %(echo %{version} |sed -e 's,\\.,_,g')
 
 Name:		squirrel
-Version:	3.1
-Release:	4
+Version:	3.2
+Release:	1
 Summary:	The squirrel language
 License:	zlib
 Group:		Development/Other
 URL:		http://squirrel-lang.org
-Source0:	http://skylink.dl.sourceforge.net/project/squirrel/squirrel3/squirrel%20%{version}%20stable/squirrel_%{ver}_stable.tar.gz
+Source0:	https://github.com/albertodemichelis/squirrel/releases/download/v%{version}/squirrel%{ver}stable.tar.gz
 Patch0:         squirrel-autoconfiscate.patch
 
 %libpackage squirrel 0
