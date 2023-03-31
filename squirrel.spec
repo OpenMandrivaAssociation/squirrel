@@ -9,7 +9,7 @@
 
 Name:		squirrel
 Version:	3.2
-Release:	1
+Release:	2
 Summary:	The squirrel language
 License:	zlib
 Group:		Development/Other
