@@ -13,7 +13,7 @@ Release:	2
 Summary:	The squirrel language
 License:	zlib
 Group:		Development/Other
-URL:		http://squirrel-lang.org
+URL:		https://squirrel-lang.org
 Source0:	https://github.com/albertodemichelis/squirrel/releases/download/v%{version}/squirrel_%{ver}_stable.tar.gz
 Patch0:         squirrel-autoconfiscate.patch
 
