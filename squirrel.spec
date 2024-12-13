@@ -2,7 +2,8 @@
 
 %define oname %{name}%(echo %{version} | cut -d. -f1)
 
-%define libname %mklibname %{name} %{version}
+%define libname %mklibname %{name}
+%define libsqname %mklibname sqstdlib
 %define develname %mklibname %{name} -d
 
 %define ver %(echo %{version} |sed -e 's,\\.,_,g')
@@ -28,11 +29,23 @@ delegation,tail recursion,generators,cooperative
 threads,exception handling, reference counting and
 garbage collection on demand. C-like syntax.
 
+%package -n %{libname}
+Summary:        Shared library for %{name}
+
+%description -n %{libname}
+This package contains the shared library files.
+
+%package -n %{libsqname}
+Summary:        Shared library for %{name}
+
+%description -n %{libsqname}
+This package contains the shared library files.
+
 %package -n %{develname}
 Summary:	Header files and static libraries from %{name}
 Group:		Development/Other
-Requires:	%{mklibname squirrel 0}
-Requires:	%{mklibname sqstdlib 0}
+Requires:	%{libname} = %{EVRD}
+Requires:	%{libsqname} = %{EVRD}
 Provides:	lib%{name}-devel = %{EVRD}
 Provides:	%{name}-devel = %{EVRD}
 Obsoletes:	%{mklibname %{name} 0 -d} < 3.1
@@ -108,3 +121,9 @@ rm -fv %{buildroot}/%{_docdir}/%{name}/*.pdf
 %{_libdir}/libsqstdlib.so
 %{_libdir}/libsquirrel.so
 %{_libdir}/pkgconfig/*
+
+%files -n %{libname} 
+%{_libdir}/libsquirrel.so.0*
+
+%files -n %{libsqname}
+%{_libdir}/libsqstdlib.so.0*
