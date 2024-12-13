@@ -17,9 +17,9 @@ URL:		https://squirrel-lang.org
 Source0:	https://github.com/albertodemichelis/squirrel/releases/download/v%{version}/squirrel_%{ver}_stable.tar.gz
 Patch0:         squirrel-autoconfiscate.patch
 
-%libpackage squirrel 0
+#libpackage squirrel 0
 
-%libpackage sqstdlib 0
+#libpackage sqstdlib 0
 
 %description
 Squirrel is a light weight programming language
