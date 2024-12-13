@@ -31,8 +31,8 @@ garbage collection on demand. C-like syntax.
 %package -n %{develname}
 Summary:	Header files and static libraries from %{name}
 Group:		Development/Other
-Requires:	%{mklibname squirrel 0} = %{EVRD}
-Requires:	%{mklibname sqstdlib 0} = %{EVRD}
+Requires:	%{mklibname squirrel 0}
+Requires:	%{mklibname sqstdlib 0}
 Provides:	lib%{name}-devel = %{EVRD}
 Provides:	%{name}-devel = %{EVRD}
 Obsoletes:	%{mklibname %{name} 0 -d} < 3.1
