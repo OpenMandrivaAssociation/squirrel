@@ -22,6 +22,11 @@ Patch0:         squirrel-autoconfiscate.patch
 
 #libpackage sqstdlib 0
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 %description
 Squirrel is a light weight programming language
 featuring higher-order functions,classes/inheritance,
